@@ -54,7 +54,7 @@ npm run preview
 ```
 herwealth-global/
 ├── public/
-│   └── logo.jpg              # Site logo
+│   └── logo.png              # Site logo (200×200 PNG)
 ├── src/
 │   ├── content/
 │   │   ├── academy/          # Academy track markdown files
