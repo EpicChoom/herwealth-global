@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "HerWealth Global",
-  founder: "Sofia Lovski",
+  founder: "Sofia Nikolovski",
   slogan: "Empowering the Next Generation of Female Leaders.",
   secondarySlogan: "Lead Boldly. Think Globally.",
   description:
