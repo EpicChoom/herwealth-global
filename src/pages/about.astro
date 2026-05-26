@@ -1,0 +1,235 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ValueCard from "../components/ValueCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { coreValues } from "../data/values";
+---
+
+<BaseLayout
+  title="About"
+  description={`Learn about HerWealth Global's mission, vision, values, and the story behind the student-led platform empowering young women.`}
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Our Story
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          About HerWealth Global
+        </h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.85);">
+          A student-led educational platform built to empower young women
+          through leadership, entrepreneurship, financial literacy, and global
+          awareness.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About Intro ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-lg lg:text-xl leading-relaxed mb-6" style="color: #18181b;">
+        HerWealth Global was created to give young women a space to grow as
+        leaders, learners, entrepreneurs, and globally minded thinkers. Through
+        structured curriculum, workshops, events, and community, HerWealth
+        Global helps students build the confidence and knowledge they need to
+        succeed in business, leadership, investing, and beyond.
+      </p>
+      <p class="text-lg leading-relaxed" style="color: #52525b;">
+        No prior experience is required. HerWealth Global is designed for
+        students who are curious, ambitious, and ready to grow.
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── Mission & Vision ── -->
+  <Section background="soft-pink">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div
+        class="bg-white rounded-2xl p-8 border"
+        style="border-color: #e4e4e7;"
+      >
+        <p
+          class="text-xs font-semibold uppercase tracking-widest mb-3"
+          style="color: #7b1e3a;"
+        >
+          Our Mission
+        </p>
+        <h2 class="font-serif text-2xl font-semibold mb-4" style="color: #18181b;">
+          Why We Exist
+        </h2>
+        <p class="text-base leading-relaxed" style="color: #52525b;">
+          HerWealth Global is dedicated to empowering young women through
+          leadership, entrepreneurship, financial literacy, investing education,
+          and global awareness by creating a supportive community where students
+          can grow with confidence, ambition, and purpose.
+        </p>
+      </div>
+      <div
+        class="bg-white rounded-2xl p-8 border"
+        style="border-color: #e4e4e7;"
+      >
+        <p
+          class="text-xs font-semibold uppercase tracking-widest mb-3"
+          style="color: #7b1e3a;"
+        >
+          Our Vision
+        </p>
+        <h2 class="font-serif text-2xl font-semibold mb-4" style="color: #18181b;">
+          Where We're Going
+        </h2>
+        <p class="text-base leading-relaxed" style="color: #52525b;">
+          To inspire a generation of confident, globally minded female leaders
+          who are prepared to create meaningful impact in business, leadership,
+          and society.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── Core Values ── -->
+  <Section background="white">
+    <SectionHeader
+      title="Our Core Values"
+      subtitle="HerWealth Global believes young women should have access to the knowledge, confidence, and community needed to lead in business and beyond."
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {coreValues.map((value) => (
+        <ValueCard
+          title={value.title}
+          description={value.description}
+          icon={value.icon}
+        />
+      ))}
+    </div>
+  </Section>
+
+  <!-- ── What Makes Us Different ── -->
+  <Section background="beige">
+    <div class="max-w-3xl mx-auto text-center">
+      <p
+        class="text-sm font-semibold uppercase tracking-widest mb-4"
+        style="color: #7b1e3a;"
+      >
+        What Makes Us Different
+      </p>
+      <h2 class="font-serif text-3xl lg:text-4xl font-semibold mb-6" style="color: #18181b;">
+        More Than a Student Club
+      </h2>
+      <p class="text-lg leading-relaxed" style="color: #52525b;">
+        HerWealth Global is different from a typical student organization
+        because it combines leadership, entrepreneurship, investing education,
+        financial literacy, and global awareness into one modern educational
+        platform designed specifically to empower young women.
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── Who We Serve ── -->
+  <Section background="white">
+    <SectionHeader
+      title="Who HerWealth Global Serves"
+      subtitle="Our community is open to anyone who is curious, ambitious, and ready to grow."
+      centered={true}
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+      {[
+        {
+          label: "Young Women",
+          desc: "Students interested in business, leadership, investing, entrepreneurship, and global awareness — at any experience level.",
+        },
+        {
+          label: "Beginners",
+          desc: "Students with no prior experience in finance, business, or public speaking who want to learn and grow.",
+        },
+        {
+          label: "Future Leaders",
+          desc: "Students looking to build confidence, develop professional skills, and prepare for college and career success.",
+        },
+        {
+          label: "Parents & Educators",
+          desc: "Parents, teachers, and school administrators who want to support young women's leadership development.",
+        },
+        {
+          label: "Guest Speakers",
+          desc: "Professionals, entrepreneurs, and leaders interested in inspiring the next generation of female leaders.",
+        },
+        {
+          label: "Partners & Organizations",
+          desc: "Schools, organizations, and partners interested in collaboration, chapters, or community engagement.",
+        },
+      ].map((item) => (
+        <div
+          class="rounded-xl p-5 border"
+          style="border-color: #e4e4e7; background-color: #fafafa;"
+        >
+          <h3 class="font-serif font-semibold text-base mb-2" style="color: #18181b;">
+            {item.label}
+          </h3>
+          <p class="text-sm leading-relaxed" style="color: #52525b;">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- ── Founder Card ── -->
+  <Section background="soft-pink">
+    <div class="max-w-2xl mx-auto">
+      <div
+        class="bg-white rounded-2xl p-8 lg:p-10 border flex flex-col sm:flex-row gap-6 items-start"
+        style="border-color: #e4e4e7;"
+      >
+        <div
+          class="shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-serif font-bold text-white"
+          style="background: linear-gradient(135deg, #7b1e3a, #c9a227);"
+          aria-hidden="true"
+        >
+          S
+        </div>
+        <div>
+          <p
+            class="text-xs font-semibold uppercase tracking-widest mb-2"
+            style="color: #7b1e3a;"
+          >
+            Founder
+          </p>
+          <h3 class="font-serif text-xl font-semibold mb-1" style="color: #18181b;">
+            {siteConfig.founder}
+          </h3>
+          <p class="text-sm mb-3" style="color: #52525b;">
+            Founder, HerWealth Global
+          </p>
+          <p class="text-sm leading-relaxed italic" style="color: #52525b;">
+            Founder bio coming soon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── CTA ── -->
+  <CTASection
+    title="Ready to Join HerWealth Global?"
+    subtitle="No experience required. Join a community of ambitious young women building confidence, leadership, and real-world skills."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Explore the Academy"
+    secondaryHref="/academy"
+  />
+</BaseLayout>

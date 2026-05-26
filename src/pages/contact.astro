@@ -1,0 +1,213 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with HerWealth Global — for student interest, speaker opportunities, partnerships, and general questions."
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Get in Touch
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          Contact HerWealth Global
+        </h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.85);">
+          Questions, ideas, speaker opportunities, partnerships, and student
+          interest are welcome. Follow HerWealth Global on Instagram or use the
+          join form to get involved.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact Options ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <!-- Join Form -->
+        <div
+          class="rounded-2xl p-7 border flex flex-col gap-4"
+          style="border-color: #e4e4e7; background-color: #fafafa;"
+        >
+          <div
+            class="text-2xl w-12 h-12 flex items-center justify-center rounded-xl"
+            style="background-color: #f8e8ee;"
+            aria-hidden="true"
+          >
+            📋
+          </div>
+          <div>
+            <h2 class="font-serif text-xl font-semibold mb-2" style="color: #18181b;">
+              Join or Express Interest
+            </h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: #52525b;">
+              Interested in joining HerWealth Global? Fill out the interest
+              form to get started. No experience required.
+            </p>
+            <a
+              href={siteConfig.joinFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-semibold text-sm transition-colors duration-200"
+              style="color: #7b1e3a;"
+            >
+              Open Interest Form →
+            </a>
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div
+          class="rounded-2xl p-7 border flex flex-col gap-4"
+          style="border-color: #e4e4e7; background-color: #fafafa;"
+        >
+          <div
+            class="text-2xl w-12 h-12 flex items-center justify-center rounded-xl"
+            style="background-color: #f8e8ee;"
+            aria-hidden="true"
+          >
+            📷
+          </div>
+          <div>
+            <h2 class="font-serif text-xl font-semibold mb-2" style="color: #18181b;">
+              Follow on Instagram
+            </h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: #52525b;">
+              Stay updated on events, announcements, and community highlights.
+              Follow HerWealth Global on Instagram.
+            </p>
+            <a
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-semibold text-sm transition-colors duration-200"
+              style="color: #7b1e3a;"
+            >
+              @herwealthglobal.official →
+            </a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div
+          class="rounded-2xl p-7 border flex flex-col gap-4"
+          style="border-color: #e4e4e7; background-color: #fafafa;"
+        >
+          <div
+            class="text-2xl w-12 h-12 flex items-center justify-center rounded-xl"
+            style="background-color: #f8e8ee;"
+            aria-hidden="true"
+          >
+            ✉️
+          </div>
+          <div>
+            <h2 class="font-serif text-xl font-semibold mb-2" style="color: #18181b;">
+              Email
+            </h2>
+            <p class="text-sm leading-relaxed mb-2" style="color: #52525b;">
+              An official email address is coming soon. Check back for updates
+              or reach out via Instagram in the meantime.
+            </p>
+            <span class="text-sm italic" style="color: #a1a1aa;">
+              Email coming soon
+            </span>
+          </div>
+        </div>
+
+        <!-- Speakers & Partners -->
+        <div
+          class="rounded-2xl p-7 border flex flex-col gap-4"
+          style="border-color: #e4e4e7; background-color: #fafafa;"
+        >
+          <div
+            class="text-2xl w-12 h-12 flex items-center justify-center rounded-xl"
+            style="background-color: #f8e8ee;"
+            aria-hidden="true"
+          >
+            🤝
+          </div>
+          <div>
+            <h2 class="font-serif text-xl font-semibold mb-2" style="color: #18181b;">
+              Speakers & Partners
+            </h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: #52525b;">
+              Interested in speaking at a HerWealth Global event, partnering
+              with us, or exploring collaboration opportunities? We'd love to
+              hear from you.
+            </p>
+            <a
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-semibold text-sm transition-colors duration-200"
+              style="color: #7b1e3a;"
+            >
+              Reach out on Instagram →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── Who Can Reach Out ── -->
+  <Section background="beige">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-2xl font-semibold mb-4" style="color: #18181b;">
+        Who Can Reach Out?
+      </h2>
+      <p class="text-base leading-relaxed mb-6" style="color: #52525b;">
+        HerWealth Global welcomes inquiries from students, parents, teachers,
+        school administrators, guest speakers, potential partners, other student
+        organizations, and schools interested in chapters or collaboration.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        {
+          [
+            "Students",
+            "Parents",
+            "Teachers",
+            "School Administrators",
+            "Guest Speakers",
+            "Partners",
+            "Other Organizations",
+          ].map((group) => (
+            <span
+              class="px-4 py-2 rounded-full text-sm font-medium border"
+              style="border-color: #7b1e3a; color: #7b1e3a; background-color: white;"
+            >
+              {group}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── CTA ── -->
+  <CTASection
+    title="Ready to Get Involved?"
+    subtitle="Join HerWealth Global today or follow us on Instagram to stay connected."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Follow on Instagram"
+    secondaryHref={siteConfig.instagramUrl}
+  />
+</BaseLayout>

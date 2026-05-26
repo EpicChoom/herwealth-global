@@ -1,0 +1,28 @@
+---
+interface Props {
+  background?: "white" | "soft-pink" | "beige" | "wine" | "gray";
+  class?: string;
+  id?: string;
+  narrow?: boolean;
+}
+
+const { background = "white", class: className = "", id, narrow = false } = Astro.props;
+
+const bgStyles = {
+  white: "background-color: #ffffff;",
+  "soft-pink": "background-color: #f8e8ee;",
+  beige: "background-color: #f7f1ea;",
+  wine: "background-color: #7b1e3a; color: white;",
+  gray: "background-color: #fafafa;",
+};
+---
+
+<section
+  id={id}
+  class={`py-20 lg:py-28 ${className}`}
+  style={bgStyles[background]}
+>
+  <div class={`mx-auto px-5 sm:px-6 lg:px-8 ${narrow ? "max-w-5xl" : "max-w-7xl"}`}>
+    <slot />
+  </div>
+</section>

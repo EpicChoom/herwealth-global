@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { memberBenefits } from "../data/benefits";
+---
+
+<BaseLayout
+  title="Join"
+  description="Join HerWealth Global — no experience required. Fill out the interest form and start building your future today."
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Get Started
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          Join HerWealth Global
+        </h1>
+        <p class="text-lg leading-relaxed mb-8" style="color: rgba(255,255,255,0.85);">
+          Whether you are already interested in business or just beginning to
+          explore leadership, investing, or entrepreneurship, HerWealth Global
+          welcomes you. No experience is required — only curiosity, ambition,
+          and a willingness to grow.
+        </p>
+        <a
+          href={siteConfig.joinFormUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-hero-primary btn-lg"
+        >
+          Join HerWealth Global →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Beginner Reassurance ── -->
+  <Section background="soft-pink">
+    <div class="max-w-3xl mx-auto text-center">
+      <p
+        class="text-sm font-semibold uppercase tracking-widest mb-4"
+        style="color: #7b1e3a;"
+      >
+        You Belong Here
+      </p>
+      <h2 class="font-serif text-3xl font-semibold mb-4" style="color: #18181b;">
+        No Experience Required
+      </h2>
+      <p class="text-lg leading-relaxed" style="color: #52525b;">
+        You do not need experience to join HerWealth Global. Our organization
+        is designed to help students learn, grow, and build confidence in a
+        supportive environment. Many members may be completely new to
+        leadership, public speaking, business, or investing — and that's okay.
+        HerWealth Global is about growth, not perfection.
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── Joining Process ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto">
+      <SectionHeader
+        title="How to Join"
+        subtitle="Joining HerWealth Global is simple and takes just a few minutes."
+        centered={false}
+      />
+      <ol class="space-y-6">
+        {
+          [
+            {
+              step: "Visit the Website",
+              desc: "You're already here! Explore the Academy, Events, and About pages to learn more about HerWealth Global.",
+            },
+            {
+              step: "Click Join HerWealth Global",
+              desc: "Use the Join button on this page or anywhere on the site to access the interest form.",
+            },
+            {
+              step: "Fill Out the Interest Form",
+              desc: "Complete a short form to let us know you're interested. It only takes a few minutes.",
+            },
+            {
+              step: "Receive Meeting Information",
+              desc: "You'll receive information about upcoming meetings, events, and next steps.",
+            },
+            {
+              step: "Attend an Introductory Meeting",
+              desc: "Join an introductory meeting or welcome session to meet the community and get started.",
+            },
+          ].map((item, i) => (
+            <li class="flex items-start gap-5">
+              <div
+                class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background-color: #7b1e3a;"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </div>
+              <div>
+                <h3
+                  class="font-serif font-semibold text-lg mb-1"
+                  style="color: #18181b;"
+                >
+                  {item.step}
+                </h3>
+                <p class="text-sm leading-relaxed" style="color: #52525b;">
+                  {item.desc}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-10 text-center">
+        <a
+          href={siteConfig.joinFormUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-wine btn-lg"
+        >
+          Fill Out the Interest Form →
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── Member Benefits ── -->
+  <Section background="beige">
+    <SectionHeader
+      title="What You'll Gain"
+      subtitle="HerWealth Global members build real skills, real confidence, and real connections."
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {
+        memberBenefits.map((benefit) => (
+          <div
+            class="bg-white rounded-xl p-5 border"
+            style="border-color: #e4e4e7;"
+          >
+            <h3
+              class="font-serif font-semibold text-base mb-2"
+              style="color: #18181b;"
+            >
+              {benefit.title}
+            </h3>
+            <p class="text-sm leading-relaxed" style="color: #52525b;">
+              {benefit.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- ── Final CTA ── -->
+  <CTASection
+    title="Ready to Start Your Journey?"
+    subtitle="Join HerWealth Global today. No experience required — only curiosity, ambition, and a willingness to grow."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Learn More About Us"
+    secondaryHref="/about"
+  />
+</BaseLayout>

@@ -1,0 +1,277 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import AcademyCard from "../components/AcademyCard.astro";
+import EventCard from "../components/EventCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { memberBenefits } from "../data/benefits";
+import { academyTracks } from "../data/academy";
+import { getCollection } from "astro:content";
+
+const events = (await getCollection("events"))
+  .filter((e) => e.data.featured)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={siteConfig.name}
+  description={siteConfig.description}
+>
+  <!-- ── Hero ── -->
+  <section
+    class="relative overflow-hidden py-24 sm:py-28 lg:py-36"
+    style="background: linear-gradient(145deg, #7b1e3a 0%, #5a1429 55%, #3d0d1c 100%);"
+  >
+    <!-- Decorative background shapes -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div
+        class="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full opacity-[0.07]"
+        style="background-color: #c9a227;"
+      ></div>
+      <div
+        class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-[0.05]"
+        style="background-color: #f8e8ee;"
+      ></div>
+      <div
+        class="absolute top-1/2 right-[10%] w-40 h-40 rounded-full opacity-[0.04] hidden lg:block"
+        style="background-color: #ffffff;"
+      ></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div class="max-w-2xl lg:max-w-3xl">
+        <!-- Eyebrow -->
+        <p
+          class="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] mb-6 lg:mb-8"
+          style="color: #c9a227;"
+        >
+          {siteConfig.secondarySlogan}
+        </p>
+
+        <!-- Headline -->
+        <h1
+          class="font-serif text-[2.25rem] sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-semibold text-white leading-[1.1] mb-6 lg:mb-8"
+        >
+          {siteConfig.slogan}
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+          class="text-base sm:text-lg lg:text-xl leading-relaxed mb-10 lg:mb-12 max-w-xl lg:max-w-2xl"
+          style="color: rgba(255,255,255,0.8);"
+        >
+          HerWealth Global helps young women build confidence, leadership
+          skills, financial literacy, investing knowledge, entrepreneurial
+          thinking, and global awareness through a supportive student-led
+          community.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a
+            href={siteConfig.joinFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-hero-primary btn-lg"
+          >
+            Join HerWealth
+          </a>
+          <a
+            href="/academy"
+            class="btn btn-hero-secondary btn-lg"
+          >
+            Explore the Academy
+          </a>
+          <a
+            href="/about"
+            class="btn btn-hero-tertiary btn-lg hidden sm:inline-flex"
+          >
+            Learn More →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quick Introduction ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="gold-accent mx-auto mb-6"></div>
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.15em] mb-5"
+        style="color: #7b1e3a;"
+      >
+        Student-Led. Beginner-Friendly.
+      </p>
+      <p class="text-xl sm:text-2xl lg:text-[1.625rem] font-serif leading-relaxed" style="color: #18181b;">
+        HerWealth Global is a student-led organization designed to help young
+        women explore business, investing, leadership, entrepreneurship, and
+        global opportunities in a welcoming, beginner-friendly environment.
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── Academy Tracks ── -->
+  <Section background="soft-pink" id="academy-preview">
+    <SectionHeader
+      title="The HerWealth Academy"
+      subtitle="Three structured learning tracks — from beginner foundations to real-world application. No experience required."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        academyTracks.map((track) => (
+          <AcademyCard
+            title={track.title}
+            shortDescription={track.shortDescription}
+            slug={track.slug}
+            ctaLabel={track.ctaLabel}
+            ctaHref={`/academy#${track.slug}`}
+            icon={track.icon}
+          />
+        ))
+      }
+    </div>
+    <div class="text-center mt-12">
+      <a
+        href="/academy"
+        class="link-wine inline-flex items-center gap-1.5 text-sm font-semibold group"
+      >
+        View the full Academy
+        <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </Section>
+
+  <!-- ── Why Join ── -->
+  <Section background="white" id="why-join">
+    <SectionHeader
+      title="Why Join HerWealth Global?"
+      subtitle="Build the skills, confidence, and community you need to lead boldly and think globally."
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+      {
+        memberBenefits.map((benefit) => (
+          <div class="card-flat p-5 lg:p-6">
+            <h3
+              class="font-serif font-semibold text-[0.9375rem] mb-2"
+              style="color: #18181b;"
+            >
+              {benefit.title}
+            </h3>
+            <p class="text-[0.8125rem] leading-relaxed" style="color: #52525b;">
+              {benefit.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- ── Events Preview ── -->
+  <Section background="beige" id="events-preview">
+    <SectionHeader
+      title="Upcoming Events"
+      subtitle="From workshops and speaker sessions to conferences and networking opportunities, HerWealth Global events are designed to help students gain real-world skills and meaningful connections."
+    />
+
+    {
+      events.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <EventCard
+              title={event.data.title}
+              date={event.data.date}
+              time={event.data.time}
+              location={event.data.location}
+              category={event.data.category}
+              description={event.body ?? ""}
+              registrationUrl={event.data.registrationUrl}
+              skillLevel={event.data.skillLevel}
+              status={event.data.status}
+              featured={event.data.featured}
+            />
+          ))}
+        </div>
+      ) : (
+        <div
+          class="text-center py-12 rounded-2xl border"
+          style="border-color: #e4e4e7; background-color: white;"
+        >
+          <p class="text-lg font-serif font-medium mb-2" style="color: #18181b;">
+            Events Coming Soon
+          </p>
+          <p class="text-sm" style="color: #52525b;">
+            Check back for upcoming workshops, speaker sessions, and more.
+          </p>
+        </div>
+      )
+    }
+
+    <div class="text-center mt-12">
+      <a
+        href="/events"
+        class="link-wine inline-flex items-center gap-1.5 text-sm font-semibold group"
+      >
+        View all events
+        <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </Section>
+
+  <!-- ── Founder / Community ── -->
+  <Section background="white" id="founder">
+    <div class="max-w-3xl mx-auto">
+      <div
+        class="rounded-2xl p-8 sm:p-10 lg:p-12 flex flex-col sm:flex-row gap-7 items-start"
+        style="background: linear-gradient(135deg, #fafafa 0%, #f8e8ee 100%); border: 1px solid #f3d5e0;"
+      >
+        <!-- Founder avatar placeholder -->
+        <div
+          class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-serif font-bold text-white shadow-lg"
+          style="background: linear-gradient(135deg, #7b1e3a, #c9a227);"
+          aria-hidden="true"
+        >
+          S
+        </div>
+        <div>
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.15em] mb-3"
+            style="color: #7b1e3a;"
+          >
+            A Note from the Founder
+          </p>
+          <blockquote
+            class="font-serif text-lg sm:text-xl lg:text-[1.375rem] leading-relaxed mb-5"
+            style="color: #18181b;"
+          >
+            "HerWealth Global was created to give young women a space to grow
+            as leaders, learners, entrepreneurs, and globally minded thinkers.
+            No prior experience is required — only curiosity, ambition, and a
+            willingness to grow."
+          </blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-px" style="background-color: #c9a227;"></div>
+            <div>
+              <p class="font-semibold text-sm" style="color: #18181b;">
+                {siteConfig.founder}
+              </p>
+              <p class="text-xs" style="color: #71717a;">Founder, HerWealth Global</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── Final CTA ── -->
+  <CTASection
+    title="Start Building Your Future with HerWealth Global"
+    subtitle="No experience required. Only curiosity, ambition, and a willingness to grow. Join a community of young women building confidence, leadership, and real-world skills."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Explore the Academy"
+    secondaryHref="/academy"
+  />
+</BaseLayout>

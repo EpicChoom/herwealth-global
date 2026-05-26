@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import AcademyCard from "../components/AcademyCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { academyTracks } from "../data/academy";
+---
+
+<BaseLayout
+  title="Academy"
+  description="Explore the HerWealth Academy — three structured learning tracks covering Investing & Financial Literacy, Entrepreneurship, and Leadership & Confidence."
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Structured Learning
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          The HerWealth Academy
+        </h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.85);">
+          The HerWealth Academy gives students a structured way to explore
+          investing, entrepreneurship, and leadership at their own pace. Each
+          track begins with beginner-friendly foundations and grows into
+          advanced real-world application.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Track Overview Cards ── -->
+  <Section background="soft-pink">
+    <SectionHeader
+      title="Three Learning Tracks"
+      subtitle="Choose your path — or explore all three. Every track starts at the beginner level."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        academyTracks.map((track) => (
+          <AcademyCard
+            title={track.title}
+            shortDescription={track.shortDescription}
+            slug={track.slug}
+            ctaLabel={track.ctaLabel}
+            ctaHref={`/academy#${track.slug}`}
+            icon={track.icon}
+          />
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- ── Beginner-Friendly Message ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto text-center">
+      <p
+        class="text-sm font-semibold uppercase tracking-widest mb-4"
+        style="color: #7b1e3a;"
+      >
+        No Experience Required
+      </p>
+      <h2 class="font-serif text-2xl lg:text-3xl font-semibold mb-4" style="color: #18181b;">
+        HerWealth Global is About Growth, Not Perfection
+      </h2>
+      <p class="text-lg leading-relaxed" style="color: #52525b;">
+        You do not need experience to join HerWealth Global. Our organization
+        is designed to help students learn, grow, and build confidence in a
+        supportive environment. Many members may be completely new to
+        leadership, public speaking, business, or investing — and that's okay.
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── Full Track Sections ── -->
+  {
+    academyTracks.map((track, trackIndex) => {
+      const isInvesting = track.slug === "investing-financial-literacy";
+      const bgVariant = trackIndex % 2 === 0 ? "beige" : "white";
+
+      return (
+        <section
+          id={track.slug}
+          class="py-16 lg:py-24"
+          style={bgVariant === "beige" ? "background-color: #f7f1ea;" : "background-color: #ffffff;"}
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Track header -->
+            <div class="flex items-start gap-5 mb-10">
+              <div
+                class="shrink-0 text-3xl w-14 h-14 flex items-center justify-center rounded-2xl"
+                style="background-color: #f8e8ee;"
+                aria-hidden="true"
+              >
+                {track.icon}
+              </div>
+              <div>
+                <h2
+                  class="font-serif text-3xl lg:text-4xl font-semibold mb-3 leading-tight"
+                  style="color: #18181b;"
+                >
+                  {track.title}
+                </h2>
+                <p class="text-base lg:text-lg leading-relaxed max-w-2xl" style="color: #52525b;">
+                  {track.shortDescription}
+                </p>
+              </div>
+            </div>
+
+            <!-- Levels grid with topic lists -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {track.levels.map((level) => (
+                <div
+                  class="bg-white rounded-2xl border p-6 flex flex-col"
+                  style="border-color: #e4e4e7;"
+                >
+                  <div
+                    class="text-xs font-semibold uppercase tracking-wider mb-4 pb-3 border-b"
+                    style="color: #7b1e3a; border-color: #f8e8ee;"
+                  >
+                    {level.name}
+                  </div>
+                  <ul class="space-y-2 flex-1" role="list">
+                    {level.topics.map((topic) => (
+                      <li class="flex items-start gap-2 text-sm leading-relaxed" style="color: #52525b;">
+                        <span class="shrink-0 font-semibold mt-0.5" style="color: #7b1e3a;" aria-hidden="true">–</span>
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <!-- Investing disclaimer -->
+            {isInvesting && (
+              <div
+                class="rounded-xl p-4 mb-6 text-sm leading-relaxed"
+                style="background-color: #f7f1ea; border: 1px solid #e4e4e7; color: #52525b;"
+                role="note"
+                aria-label="Educational disclaimer"
+              >
+                <strong style="color: #18181b;">Educational Disclaimer:</strong>{" "}
+                {siteConfig.investingDisclaimer}
+              </div>
+            )}
+
+            <!-- Track CTA -->
+            <a
+              href={siteConfig.joinFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white transition-all duration-200 hover:opacity-90 active:scale-95"
+              style="background-color: #7b1e3a;"
+            >
+              {track.ctaLabel}
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <!-- ── Global Investing Disclaimer ── -->
+  <Section background="gray">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm leading-relaxed" style="color: #52525b;">
+        <strong style="color: #18181b;">Educational Disclaimer:</strong>{" "}
+        {siteConfig.investingDisclaimer}
+      </p>
+    </div>
+  </Section>
+
+  <!-- ── CTA ── -->
+  <CTASection
+    title="Ready to Start Learning?"
+    subtitle="Join HerWealth Global and explore all three Academy tracks at your own pace. No experience required."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Learn More About Us"
+    secondaryHref="/about"
+  />
+</BaseLayout>

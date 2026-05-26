@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import EventCard from "../components/EventCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { getCollection } from "astro:content";
+
+const allEvents = await getCollection("events");
+const featuredEvents = allEvents.filter((e) => e.data.featured);
+const otherEvents = allEvents.filter((e) => !e.data.featured);
+
+const eventCategories = [
+  "Club Meetings",
+  "Training Sessions",
+  "Leadership Workshops",
+  "Investing Workshops",
+  "Entrepreneurship Workshops",
+  "Guest Speaker Events",
+  "Networking Events",
+  "Public Speaking Practice",
+  "Pitch Nights",
+  "Community Service",
+  "Conferences & Summits",
+];
+---
+
+<BaseLayout
+  title="Events"
+  description="Explore upcoming HerWealth Global events — workshops, speaker sessions, pitch nights, networking events, and more."
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Events & Opportunities
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          HerWealth Events
+        </h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.85);">
+          From workshops and speaker sessions to conferences and networking
+          opportunities, HerWealth Global events are designed to help students
+          gain real-world skills and meaningful connections.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Event Categories ── -->
+  <Section background="soft-pink">
+    <SectionHeader
+      title="Types of Events"
+      subtitle="HerWealth Global hosts a variety of events throughout the year."
+    />
+    <div class="flex flex-wrap gap-3 justify-center">
+      {
+        eventCategories.map((cat) => (
+          <span
+            class="px-4 py-2 rounded-full text-sm font-medium border"
+            style="border-color: #7b1e3a; color: #7b1e3a; background-color: white;"
+          >
+            {cat}
+          </span>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- ── Featured Events ── -->
+  {
+    featuredEvents.length > 0 && (
+      <Section background="white">
+        <SectionHeader
+          title="Featured Events"
+          subtitle="Don't miss these upcoming opportunities."
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredEvents.map((event) => (
+            <EventCard
+              title={event.data.title}
+              date={event.data.date}
+              time={event.data.time}
+              location={event.data.location}
+              category={event.data.category}
+              description={event.body ?? ""}
+              registrationUrl={event.data.registrationUrl}
+              skillLevel={event.data.skillLevel}
+              status={event.data.status}
+              featured={event.data.featured}
+            />
+          ))}
+        </div>
+      </Section>
+    )
+  }
+
+  <!-- ── All Events ── -->
+  <Section background={featuredEvents.length > 0 ? "beige" : "white"}>
+    <SectionHeader
+      title={featuredEvents.length > 0 ? "More Events" : "Upcoming Events"}
+      subtitle="All events are beginner-friendly and open to students at every level."
+    />
+
+    {
+      otherEvents.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherEvents.map((event) => (
+            <EventCard
+              title={event.data.title}
+              date={event.data.date}
+              time={event.data.time}
+              location={event.data.location}
+              category={event.data.category}
+              description={event.body ?? ""}
+              registrationUrl={event.data.registrationUrl}
+              skillLevel={event.data.skillLevel}
+              status={event.data.status}
+              featured={event.data.featured}
+            />
+          ))}
+        </div>
+      ) : allEvents.length === 0 ? (
+        <div
+          class="text-center py-16 rounded-2xl border"
+          style="border-color: #e4e4e7; background-color: white;"
+        >
+          <p class="text-2xl mb-3" aria-hidden="true">📅</p>
+          <p class="font-serif text-xl font-medium mb-2" style="color: #18181b;">
+            Events Coming Soon
+          </p>
+          <p class="text-sm mb-6" style="color: #52525b;">
+            We're planning exciting workshops, speaker sessions, and more.
+            Follow us on Instagram to stay updated.
+          </p>
+          <a
+            href={siteConfig.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-semibold text-sm transition-colors duration-200"
+            style="color: #7b1e3a;"
+          >
+            Follow on Instagram →
+          </a>
+        </div>
+      ) : null
+    }
+  </Section>
+
+  <!-- ── How to Attend ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto">
+      <SectionHeader
+        title="How to Attend"
+        subtitle="Joining a HerWealth Global event is simple."
+        centered={false}
+      />
+      <ol class="space-y-4">
+        {
+          [
+            "Join HerWealth Global using the interest form.",
+            "Receive event announcements and meeting information.",
+            "Register for specific events using the links provided.",
+            "Attend and connect with fellow members.",
+          ].map((step, i) => (
+            <li class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background-color: #7b1e3a;"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <p class="text-base leading-relaxed pt-1" style="color: #52525b;">
+                {step}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </Section>
+
+  <!-- ── CTA ── -->
+  <CTASection
+    title="Don't Miss What's Coming"
+    subtitle="Join HerWealth Global to stay updated on all upcoming events, workshops, and opportunities."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+    secondaryLabel="Follow on Instagram"
+    secondaryHref={siteConfig.instagramUrl}
+  />
+</BaseLayout>

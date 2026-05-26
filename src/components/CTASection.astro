@@ -1,0 +1,66 @@
+---
+import { siteConfig } from "../data/site";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = "Start Building Your Future",
+  subtitle = "Join HerWealth Global and become part of a community of ambitious young women building confidence, leadership, and real-world skills.",
+  primaryLabel = "Join HerWealth Global",
+  primaryHref = siteConfig.joinFormUrl,
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+
+const isExternalPrimary = primaryHref.startsWith("http");
+const isExternalSecondary = secondaryHref?.startsWith("http") ?? false;
+---
+
+<section class="relative overflow-hidden py-24 lg:py-32" style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 50%, #3d0d1c 100%);">
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 right-0 w-72 h-72 rounded-full opacity-[0.06]" style="background-color: #c9a227; transform: translate(30%, -30%);"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-[0.04]" style="background-color: #f8e8ee; transform: translate(-30%, 30%);"></div>
+  </div>
+
+  <div class="relative max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+    <h2 class="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-white mb-5 leading-tight">
+      {title}
+    </h2>
+    <p
+      class="text-base lg:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
+      style="color: rgba(255,255,255,0.8);"
+    >
+      {subtitle}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={primaryHref}
+        target={isExternalPrimary ? "_blank" : undefined}
+        rel={isExternalPrimary ? "noopener noreferrer" : undefined}
+        class="btn btn-hero-primary btn-lg"
+      >
+        {primaryLabel}
+      </a>
+      {
+        secondaryLabel && secondaryHref && (
+          <a
+            href={secondaryHref}
+            target={isExternalSecondary ? "_blank" : undefined}
+            rel={isExternalSecondary ? "noopener noreferrer" : undefined}
+            class="btn btn-cta-secondary btn-lg"
+          >
+            {secondaryLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

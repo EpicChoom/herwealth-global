@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import FAQList from "../components/FAQList.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site";
+
+const faqItems = [
+  {
+    question: "Do I need business or investing experience to join?",
+    answer:
+      "No. HerWealth Global is beginner-friendly. You do not need prior experience in business, investing, leadership, or public speaking to join.",
+  },
+  {
+    question: "Is HerWealth Global beginner-friendly?",
+    answer:
+      "Yes. The organization is designed to help students learn, grow, and build confidence step by step. Every track starts at the beginner level.",
+  },
+  {
+    question: "Can freshmen or beginners join?",
+    answer:
+      "Yes. Students at different experience levels are welcome. HerWealth Global is designed to meet you where you are.",
+  },
+  {
+    question: "What if I am nervous about public speaking?",
+    answer:
+      "Everyone starts somewhere. HerWealth Global is designed to support students who may be new to public speaking, business, investing, leadership, or debate. You do not need to be confident before joining — this is where you build confidence.",
+  },
+  {
+    question: "What kinds of courses or activities are offered?",
+    answer:
+      "HerWealth Global focuses on three main learning areas: Investing & Financial Literacy, Entrepreneurship, and Leadership & Confidence. Activities may include workshops, guest speakers, meetings, pitch nights, networking events, and confidence-building sessions.",
+  },
+  {
+    question: "Can I explore multiple learning tracks?",
+    answer:
+      "Yes. Students are encouraged to explore different interests and learning tracks. You are not limited to one area.",
+  },
+  {
+    question: "How much time does it take?",
+    answer:
+      "The time commitment is flexible and may depend on meetings, events, workshops, and any leadership roles you take on. Exact schedule details are coming soon.",
+  },
+  {
+    question: "Are there leadership opportunities?",
+    answer:
+      "Yes. As the organization grows, members may have opportunities to help with events, communications, curriculum, outreach, marketing, and leadership roles.",
+  },
+  {
+    question: "Are there fees?",
+    answer:
+      "Fee information is coming soon. Any future fees will be clearly communicated before events or programs.",
+  },
+  {
+    question: "What kinds of events does HerWealth Global host?",
+    answer:
+      "Potential events include leadership workshops, investing workshops, entrepreneurship pitch nights, guest speaker sessions, networking events, public speaking practice, and conferences or summits.",
+  },
+  {
+    question: "Will this help with college or career preparation?",
+    answer:
+      "HerWealth Global is designed to help students build confidence, communication, leadership, financial literacy, and professional skills that can support future academic and career goals.",
+  },
+  {
+    question: "What makes HerWealth Global different?",
+    answer:
+      "HerWealth Global combines leadership, entrepreneurship, investing education, financial literacy, and global awareness into one modern educational platform designed specifically to empower young women — not just a typical student club.",
+  },
+  {
+    question: "How do I sign up?",
+    answer: `Click the Join HerWealth button and complete the interest form. It only takes a few minutes.`,
+  },
+  {
+    question: "Who can I contact with questions?",
+    answer: `Follow HerWealth Global on Instagram at @herwealthglobal.official or check back for an official email address when available.`,
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Answers to common questions about HerWealth Global — experience requirements, events, learning tracks, time commitment, and how to join."
+>
+  <!-- ── Page Hero ── -->
+  <section
+    class="py-16 lg:py-24"
+    style="background: linear-gradient(135deg, #7b1e3a 0%, #5a1429 100%);"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-widest mb-4"
+          style="color: #c9a227;"
+        >
+          Common Questions
+        </p>
+        <h1
+          class="font-serif text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6"
+        >
+          Frequently Asked Questions
+        </h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.85);">
+          Everything you need to know about joining HerWealth Global, what to
+          expect, and how to get started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ List ── -->
+  <Section background="white">
+    <div class="max-w-3xl mx-auto">
+      <FAQList items={faqItems} />
+    </div>
+  </Section>
+
+  <!-- ── Still Have Questions ── -->
+  <Section background="soft-pink">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-serif text-2xl font-semibold mb-4" style="color: #18181b;">
+        Still Have Questions?
+      </h2>
+      <p class="text-base leading-relaxed mb-6" style="color: #52525b;">
+        Reach out on Instagram or use the join form to get in touch. We're
+        happy to help.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={siteConfig.joinFormUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm text-white transition-all duration-200 hover:opacity-90"
+          style="background-color: #7b1e3a;"
+        >
+          Join HerWealth Global
+        </a>
+        <a
+          href={siteConfig.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm border-2 transition-all duration-200 hover:opacity-80"
+          style="border-color: #7b1e3a; color: #7b1e3a;"
+        >
+          Follow on Instagram
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- ── CTA ── -->
+  <CTASection
+    title="Ready to Join?"
+    subtitle="No experience required. Take the first step and fill out the interest form today."
+    primaryLabel="Join HerWealth Global"
+    primaryHref={siteConfig.joinFormUrl}
+  />
+</BaseLayout>

@@ -1,0 +1,168 @@
+---
+import { navigation } from "../data/navigation";
+import { siteConfig } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b" style="border-color: #f4f4f5;">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-[4.5rem]">
+
+      <!-- Logo + Name -->
+      <a
+        href="/"
+        class="flex items-center gap-2.5 shrink-0 group"
+        aria-label={`${siteConfig.name} — Home`}
+      >
+        <img
+          src="/logo.jpg"
+          alt={`${siteConfig.name} logo`}
+          class="h-9 w-9 lg:h-10 lg:w-10 rounded-full object-cover ring-1 ring-gray-100"
+          width="40"
+          height="40"
+        />
+        <span class="font-serif font-semibold text-[1.05rem] lg:text-lg tracking-tight" style="color: #18181b;">
+          HerWealth Global
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Primary navigation" class="hidden lg:flex items-center gap-0.5">
+        {
+          navigation.map((item) =>
+            item.cta ? (
+              <a
+                href={item.href}
+                class="btn btn-wine btn-md ml-5"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <a
+                href={item.href}
+                class={`px-3.5 py-2 rounded-lg text-[0.8125rem] font-medium transition-colors duration-150 ${
+                  currentPath === item.href
+                    ? "font-semibold"
+                    : "hover:bg-gray-50"
+                }`}
+                style={currentPath === item.href ? "color: #7b1e3a;" : "color: #52525b;"}
+                aria-current={currentPath === item.href ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            )
+          )
+        }
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg transition-colors duration-150 hover:bg-gray-50"
+        style="color: #52525b;"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <svg
+          id="menu-icon-open"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+        <svg
+          id="menu-icon-close"
+          class="h-5 w-5 hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden bg-white border-t"
+    style="border-color: #f4f4f5;"
+    role="navigation"
+    aria-label="Mobile navigation"
+  >
+    <div class="px-5 py-4 space-y-1">
+      {
+        navigation.map((item) =>
+          item.cta ? (
+            <a
+              href={item.href}
+              class="btn btn-wine btn-md w-full mt-3"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <a
+              href={item.href}
+              class={`block px-3 py-2.5 rounded-lg text-[0.9375rem] font-medium transition-colors duration-150 ${
+                currentPath === item.href
+                  ? "font-semibold"
+                  : "hover:bg-gray-50"
+              }`}
+              style={currentPath === item.href ? "color: #7b1e3a; background-color: #f8e8ee;" : "color: #27272a;"}
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          )
+        )
+      }
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+
+  if (toggle && menu && iconOpen && iconClose) {
+    toggle.addEventListener("click", () => {
+      const isOpen = !menu.classList.contains("hidden");
+
+      if (isOpen) {
+        menu.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation menu");
+      } else {
+        menu.classList.remove("hidden");
+        iconOpen.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Close navigation menu");
+      }
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+  }
+</script>
